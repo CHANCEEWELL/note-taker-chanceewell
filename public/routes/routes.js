@@ -1,42 +1,5 @@
-# note-taker
- This simple note taking application allows you to save notes with a title and plain text. Powered by ExpressJS, the Note Taker app makes creating, viewing, and deleting notes a cinch
-
-Prerequisites
-
-https://nodejs.org/
-
-Run npm install to install all dependencies. To use the application locally, run node server.js in your CLI, and then open http://localhost:3000 in your preferred browswer.
-
-Deployed Link:
-
-** CODE SNIPPETS **
-
-The following code snippet shows how the Express server initialization and setup. Routes are setup in a separate file for organization purposes...
-
-// Initialize express app
-const app = express();
-const PORT = process.env.PORT || 3000;
-
-// Setup data parsing
-app.use(express.urlencoded({ extended: true }));
-app.use(express.json());
-app.use(express.static(__dirname));
-
-//Require routes file
-require('./routes/routes')(app);
-
-// Setup listener
-app.listen(PORT, function() {
-    console.log("App listening on PORT: " + PORT);
-});  
-
-
-
-
-The following code snippet shows how this app sets up Express routing and uses a JSON file for CRUD interactions.
-
-
-
+const fs = require('fs');
+const path = require('path');
 
 module.exports = app => {
 
@@ -45,7 +8,6 @@ module.exports = app => {
 
         if (err) throw err;
 
-        // Store the contents of the db.json file in a variable for better performance
         var notes = JSON.parse(data);
 
         // API ROUTES
@@ -103,12 +65,3 @@ module.exports = app => {
     });
 
 }
-
-
-
- BUILT WITH 
-
- - JavaScript
- - NodeJS
- - Node Packages
- -  - Express 
